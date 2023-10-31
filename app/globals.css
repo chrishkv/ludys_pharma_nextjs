@@ -17,3 +17,27 @@
 .primary-button:hover {
   background-color: rgb(37 99 235 / var(--tw-bg-opacity));
 }
+
+.input-gray {
+  --tw-text-opacity: 1;  
+  color: white;
+  --tw-bg-opacity: 1;
+  background-color: rgb(55 65 81 / var(--tw-bg-opacity));
+  --tw-border-opacity: 1;
+  border-color: rgb(75 85 99 / var(--tw-border-opacity));
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  padding: 0.625rem;
+  border-width: 1px;
+  border-radius: 0.5rem;
+}
+
+.input-label {
+  --tw-text-opacity: 1;
+  color: rgb(55 65 81 / var(--tw-text-opacity));
+  font-weight: 500;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  display: block;
+  margin-bottom: 0.5rem;
+}
