@@ -1,19 +1,31 @@
 import { NextResponse, NextRequest } from "next/server";
-import clientPromise from '@/lib/mongodb'
+import clienteMongo from '@/lib/mongodb'
 
-export async function GET() {
-    const client = await clientPromise;
-    const db = client.db("laravel-mongodb");
-    const allPosts = await db.collection("test").find({}).toArray();
-
-    console.log(allPosts);
-    return await NextResponse.json({message: "get"})
+export async function connectDatabase() {
+  const mongo = await clienteMongo
+  return mongo.db(process.env.DATABASE_NAME)
 }
 
+// Obterner todos los clientes
+export async function GET() {
+    const db = await connectDatabase()
+    const clientes = await db.collection("clientes").find({}).toArray();
+
+    return await NextResponse.json(clientes)
+}
+
+// Agregar nuevo cliente
 export async function POST(req: NextRequest) {
-    const data = await req.json()
-    console.log(data)
-    return NextResponse.json({data: data})
+  try {
+    const cliente = await req.json()
+    const db = await connectDatabase()
+    const collectionClientes = db.collection('clientes');
+    await collectionClientes.insertOne(cliente)
+
+    return NextResponse.json({data: cliente}, { status: 200 })
+  } catch (error) {
+    return NextResponse.json({ error }, { status: 500 })
+  }
 }
 
 export const config = {
