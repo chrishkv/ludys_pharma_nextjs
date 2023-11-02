@@ -2,7 +2,7 @@ import { NextResponse, NextRequest } from "next/server";
 import clienteMongo from '@/lib/mongodb'
 import { ObjectId } from "mongodb";
 
-export async function connectDatabase() {
+async function connectDatabase() {
   const mongo = await clienteMongo
   return mongo.db(process.env.DATABASE_NAME)
 }

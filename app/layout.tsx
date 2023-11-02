@@ -3,6 +3,8 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import Image from 'next/image'
 import Link from 'next/link'
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -20,13 +22,13 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
       <nav className="bg-gray-800">
-        <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+        <div className="mx-auto px-2 sm:px-6 lg:px-8">
           <div className="relative flex h-16 items-center justify-between">
             <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
               <div className="flex flex-shrink-0 items-center">
                 <Image src="/images/su_farmacia_logo.png" alt="Su Farmacia" width={203} height={36} className='rounded'/>
               </div>
-              <div className="hidden sm:ml-6 sm:block">
+              <div className="sm:ml-6 sm:block">
                 <div className="flex space-x-4">
                   <Link href="/" className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">
                     Facturar
@@ -43,10 +45,23 @@ export default function RootLayout({
                 </div>
               </div>
             </div>
+            <div className="sm:ml-6 sm:block">
+              <Link href="/clientes/agregar">
+                <button className="btn blue-button text-sm font-medium" type='button'>
+                  Agregar Cliente
+                </button>
+              </Link>
+              &nbsp;
+              <Link href="/">
+                <button className="btn blue-button text-sm font-medium" type='button'>
+                  Agregar Producto
+                </button>
+              </Link>
+            </div>  
           </div>
         </div>
       </nav>
-
+      <ToastContainer />
         {children}
       </body>
     </html>

@@ -6,15 +6,36 @@
   --font-color: #FB6600;
 }
 
-.primary-button {
-  color: white;
-  background-color: rgb(59 130 246 / var(--tw-bg-opacity));
+.btn {
   --tw-bg-opacity: 1;
   padding: 8px 12px;
   border-radius: 0.5rem;
 }
 
-.primary-button:hover {
+.green-button {
+  color: white;
+  background-color: rgb(5 122 85/var(--tw-bg-opacity));
+}
+
+.red-button {
+  color: white;
+  background-color: rgb(224 36 36/var(--tw-bg-opacity));
+}
+
+.blue-button {
+  color: white;
+  background-color: rgb(59 130 246 / var(--tw-bg-opacity));;
+}
+
+.green-button:hover {
+  background-color: rgb(4 108 78/var(--tw-bg-opacity));
+}
+
+.red-button:hover {
+  background-color: rgb(200 30 30/var(--tw-bg-opacity));
+}
+
+.blue-button:hover {
   background-color: rgb(37 99 235 / var(--tw-bg-opacity));
 }
 
@@ -40,4 +61,14 @@
   line-height: 1.25rem;
   display: block;
   margin-bottom: 0.5rem;
+}
+
+.card {
+
+}
+
+.card-line {
+  gap: 15%;
+  align-items: center;
+  display: flex;
 }

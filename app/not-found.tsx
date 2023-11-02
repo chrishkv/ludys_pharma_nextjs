@@ -7,7 +7,7 @@ export default function NotFound() {
         No Encontrado
       </h1>
       <Link href="/">
-        <button className="primary-button" type='button'>
+        <button className="btn blue-button" type='button'>
             Regresar
         </button>
       </Link>
