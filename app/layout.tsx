@@ -42,22 +42,12 @@ export default function RootLayout({
                   <Link href="/productos" className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">
                     Productos
                   </Link>
+                  <Link href="/reportes" className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">
+                    Reportes
+                  </Link>
                 </div>
               </div>
             </div>
-            <div className="sm:ml-6 sm:block">
-              <Link href="/clientes/agregar">
-                <button className="btn blue-button text-sm font-medium" type='button'>
-                  Agregar Cliente
-                </button>
-              </Link>
-              &nbsp;
-              <Link href="/">
-                <button className="btn blue-button text-sm font-medium" type='button'>
-                  Agregar Producto
-                </button>
-              </Link>
-            </div>  
           </div>
         </div>
       </nav>

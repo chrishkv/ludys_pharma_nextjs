@@ -1,5 +1,3 @@
-'use client'
-
 import FormCliente from "@/components/FormCliente"
 
 export default function () {

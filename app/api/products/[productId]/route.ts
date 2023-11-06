@@ -7,11 +7,11 @@ async function connectDatabase() {
   return mongo.db(process.env.DATABASE_NAME)
 }
 
-// Obtener Cliente por el id
-export async function GET(req: NextRequest, { params }: { params: { clientId: string } }) {
+// Obterner Producto por el id
+export async function GET(req: NextRequest, {params} : any) {
   try{
     const db = await connectDatabase()
-    const cliente = await db.collection("clientes").findOne({_id: new ObjectId(params.clientId)})
+    const cliente = await db.collection("productos").findOne({_id: new ObjectId(params.productId)})
     
     return await NextResponse.json(cliente, { status: 200 })
   } catch (error) {
@@ -19,12 +19,12 @@ export async function GET(req: NextRequest, { params }: { params: { clientId: st
   }
 }
 
-// Actualizar Cliente por el id
-export async function PUT(req: NextRequest, { params }: { params: { clientId: string } }) {
+// Actualizar Producto por el id
+export async function PUT(req: NextRequest, {params} : any) {
   try {
     const clienteParams = await req.json()
     const db = await connectDatabase()
-    const cliente = await db.collection("clientes").updateOne({_id: new ObjectId(params.clientId)},
+    const cliente = await db.collection("productos").updateOne({_id: new ObjectId(params.productId)},
     {
       $set: clienteParams
     })
@@ -35,11 +35,11 @@ export async function PUT(req: NextRequest, { params }: { params: { clientId: st
   }
 }
 
-// Borrar cliente por el id
-export async function DELETE(req: NextRequest, { params }: { params: { clientId: string } }) {
+// Borrar Producto por el id
+export async function DELETE(req: NextRequest, {params} : any) {
   try {
     const db = await connectDatabase()
-    const cliente = await db.collection("clientes").deleteOne({_id: new ObjectId(params.clientId)})
+    const cliente = await db.collection("productos").deleteOne({_id: new ObjectId(params.productId)})
 
     return await NextResponse.json(cliente, { status: 200 })
   } catch (error) {

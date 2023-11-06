@@ -1,4 +1,3 @@
-//lista de clientes
 'use client'
 
 import { useRouter } from "next/navigation"
@@ -18,15 +17,14 @@ export default function () {
 
     const router = useRouter();
 
-    const addClient = async (e:any) => {
+    const addValues = async (e:any) => {
         e.preventDefault()
         
         //Envio a la API
         const respuesta = await fetch(`${URL_API}/api/clients`, {
             method: 'POST',
-            body: JSON.stringify({data: valores})
+            body: JSON.stringify({...valores})
         })
-
 
         if (respuesta.ok) {
             toast.success('Cliente creado correctamente')
@@ -44,42 +42,64 @@ export default function () {
     
     return (
         <div className="flex justify-center items-center">
-            <form onSubmit={addClient}>
-                <div className="grid gap-6 mb-6 md:grid-cols-2">
-                    <div>
-                        <label htmlFor="first_name" className="input-label">Nombre</label>
-                        <input type="text" id="first_name" name="first_name" className="input-gray" placeholder="Nombre" required
-                        value={valores.first_name} onChange={inputManage}/>
-                    </div>
-                    <div>
-                        <label htmlFor="last_name" className="input-label">Apellido</label>
-                        <input type="text" id="last_name" name="last_name" className="input-gray" placeholder="Apellido" required
-                        value={valores.last_name} onChange={inputManage}/>
-                    </div>
-                    <div>
-                        <label htmlFor="cedula" className="input-label">Cedula</label>
-                        <input type="text" id="cedula" name="cedula" className="input-gray" placeholder="Cedula" required
-                        value={valores.cedula} onChange={inputManage}/>
-                    </div>  
-                    <div>
-                        <label htmlFor="phone" className="input-label">Numero de Telefono</label>
-                        <input type="tel" id="phone" name="phone" className="input-gray" placeholder="123-45-678"
-                        value={valores.phone} onChange={inputManage}/>
-                    </div>
-                    <div className="mb-6">
-                        <label htmlFor="email" className="input-label">Email address</label>
-                        <input type="email" id="email" name="email" className="input-gray" placeholder="usuario@correo.com" required
-                        value={valores.email} onChange={inputManage}/>
-                    </div>
-                    <div>
-                        <label htmlFor="address" className="input-label">Direccion</label>
-                        <input type="text" id="address" name="address" className="input-gray" placeholder=""
-                        value={valores.address} onChange={inputManage}/>
+            <form onSubmit={addValues}>
+                <div className="space-y-12">
+                    <div className="border-b border-gray-900/10 pb-12">
+                        <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+                            <div className="sm:col-span-3">
+                                <label htmlFor="first-name" className="block text-sm font-medium leading-6 text-gray-900">Nombres</label>
+                                <div className="mt-2">
+                                    <input type="text" name="first_name" id="first_name" className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" required
+                                    value={valores.first_name} onChange={inputManage}/>
+                                </div>
+                            </div>
+
+                            <div className="sm:col-span-3">
+                                <label htmlFor="last-name" className="block text-sm font-medium leading-6 text-gray-900">Apellidos</label>
+                                <div className="mt-2">
+                                    <input type="text" name="last_name" id="last_name" className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" required
+                                    value={valores.last_name} onChange={inputManage}/>
+                                </div>
+                            </div>
+
+                            <div className="sm:col-span-3">
+                                <label htmlFor="last-name" className="block text-sm font-medium leading-6 text-gray-900">Cedula</label>
+                                <div className="mt-2">
+                                    <input type="text" name="cedula" id="cedula" className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" required
+                                    value={valores.cedula} onChange={inputManage}/>
+                                </div>
+                            </div>
+
+                            <div className="sm:col-span-3">
+                                <label htmlFor="last-name" className="block text-sm font-medium leading-6 text-gray-900">Telefono</label>
+                                <div className="mt-2">
+                                    <input type="text" name="phone" id="phone" className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" required
+                                    value={valores.phone} onChange={inputManage}/>
+                                </div>
+                            </div>
+
+                            <div className="col-span-full">
+                                <label htmlFor="last-name" className="block text-sm font-medium leading-6 text-gray-900">Email</label>
+                                <div className="mt-2">
+                                    <input type="text" name="email" id="email" className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" required
+                                    value={valores.email} onChange={inputManage}/>
+                                </div>
+                            </div>
+
+                            <div className="col-span-full">
+                                <label htmlFor="last-name" className="block text-sm font-medium leading-6 text-gray-900">Direccion</label>
+                                <div className="mt-2">
+                                    <input type="text" name="email" id="email" className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" required
+                                    value={valores.address} onChange={inputManage}/>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <button className="btn green-button" type='submit'>
-                    Guardar cliente
-                </button>
+
+                <div className="mt-6 flex items-center justify-end gap-x-6">
+                    <button type="submit" className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Guardar</button>
+                </div>
             </form>
         </div>
     )
