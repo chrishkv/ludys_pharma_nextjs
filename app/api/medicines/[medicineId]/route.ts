@@ -8,7 +8,7 @@ async function connectDatabase() {
 }
 
 // Obterner Medicina por el id
-export async function GET(req: NextRequest, {params} : any) {
+export async function GET(req: NextRequest, { params }: { params: { medicineId: string } }) {
   try{
     const db = await connectDatabase()
     const cliente = await db.collection("medicinas").findOne({_id: new ObjectId(params.medicineId)})
@@ -20,7 +20,7 @@ export async function GET(req: NextRequest, {params} : any) {
 }
 
 // Actualizar Medicina por el id
-export async function PUT(req: NextRequest, {params} : any) {
+export async function PUT(req: NextRequest, { params }: { params: { medicineId: string } }) {
   try {
     const clienteParams = await req.json()
     const db = await connectDatabase()
@@ -36,7 +36,7 @@ export async function PUT(req: NextRequest, {params} : any) {
 }
 
 // Borrar Medicina por el id
-export async function DELETE(req: NextRequest, {params} : any) {
+export async function DELETE(req: NextRequest, { params }: { params: { medicineId: string } }) {
   try {
     const db = await connectDatabase()
     const cliente = await db.collection("medicinas").deleteOne({_id: new ObjectId(params.medicineId)})

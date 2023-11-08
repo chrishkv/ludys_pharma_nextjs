@@ -8,7 +8,7 @@ async function connectDatabase() {
 }
 
 // Obterner Producto por el id
-export async function GET(req: NextRequest, {params} : any) {
+export async function GET(req: NextRequest, { params }: { params: { productId: string } }) {
   try{
     const db = await connectDatabase()
     const cliente = await db.collection("productos").findOne({_id: new ObjectId(params.productId)})
@@ -20,7 +20,7 @@ export async function GET(req: NextRequest, {params} : any) {
 }
 
 // Actualizar Producto por el id
-export async function PUT(req: NextRequest, {params} : any) {
+export async function PUT(req: NextRequest, { params }: { params: { productId: string } }) {
   try {
     const clienteParams = await req.json()
     const db = await connectDatabase()
@@ -36,7 +36,7 @@ export async function PUT(req: NextRequest, {params} : any) {
 }
 
 // Borrar Producto por el id
-export async function DELETE(req: NextRequest, {params} : any) {
+export async function DELETE(req: NextRequest, { params }: { params: { productId: string } }) {
   try {
     const db = await connectDatabase()
     const cliente = await db.collection("productos").deleteOne({_id: new ObjectId(params.productId)})

@@ -8,26 +8,14 @@ export type ClienteType = {
     email: string
 }
 
-enum DenominationMedicine {
-    "Pastilla",
-    "Crema",
-    "Ampolla"
-}
-
 export type MedicinaType = {
     _id: string,
     name: string,
     price: number,
     stock: number,
-    type: DenominationMedicine,
+    type: string,
     components?: Array<string>,
     description?: string
-}
-
-enum DenominationProduct {
-    "Caja",
-    "Paquete",
-    "Individual"
 }
 
 export type ProductoType = {
@@ -35,6 +23,6 @@ export type ProductoType = {
     name: string,
     price: number,
     stock: number,
-    type: DenominationProduct,
+    type: string,
     description?: string
 }

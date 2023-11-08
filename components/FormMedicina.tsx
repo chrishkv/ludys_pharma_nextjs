@@ -1,9 +1,9 @@
 'use client'
 
 import { useRouter } from "next/navigation"
-import { FormEvent, useState } from "react"
+import { ChangeEvent, FormEvent, useState } from "react"
 import { URL_API } from "@/config/envs"
-import { toast } from "react-toastify";
+import { toast } from "react-toastify"
 
 export default function () {
     const [valores, setValues] = useState({
@@ -17,6 +17,12 @@ export default function () {
 
     const router = useRouter();
 
+    const optionsType = [
+        "Pastilla",
+        "Crema",
+        "Ampolla"
+    ]
+
     const addValues = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         
@@ -28,18 +34,18 @@ export default function () {
 
         if (respuesta.ok) {
             toast.success('Medicina creada correctamente')
-        }else{
+        } else {
             toast.error('Ocurrio un error al intentar crear medicina')
         }
 
-        router.push("/")
+        router.push("/medicinas")
     }
 
-    const inputManage = async (e: any) => {
+    const inputManage = async (e: ChangeEvent<any>) => {
         const {name, value} = e.target
         setValues({...valores, [name]: value})
     }
-    
+
     return (
         <div className="flex justify-center items-center">
             <form onSubmit={addValues}>
@@ -49,7 +55,7 @@ export default function () {
                             <div className="sm:col-span-3">
                                 <label htmlFor="first-name" className="block text-sm font-medium leading-6 text-gray-900">Nombre</label>
                                 <div className="mt-2">
-                                    <input type="text" name="name" id="name" className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" required
+                                    <input type="text" name="name" id="name" className="pl-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" required
                                     value={valores.name} onChange={inputManage}/>
                                 </div>
                             </div>
@@ -57,7 +63,7 @@ export default function () {
                             <div className="sm:col-span-3">
                                 <label htmlFor="last-name" className="block text-sm font-medium leading-6 text-gray-900">Precio</label>
                                 <div className="mt-2">
-                                    <input type="number" name="price" id="price" className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" required
+                                    <input type="number" name="price" id="price" className="pl-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" required
                                     value={valores.price} onChange={inputManage}/>
                                 </div>
                             </div>
@@ -65,7 +71,7 @@ export default function () {
                             <div className="sm:col-span-3">
                                 <label htmlFor="last-name" className="block text-sm font-medium leading-6 text-gray-900">Cantidad</label>
                                 <div className="mt-2">
-                                    <input type="number" name="stock" id="stock" className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" required
+                                    <input type="number" name="stock" id="stock" className="pl-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" required
                                     value={valores.stock} onChange={inputManage}/>
                                 </div>
                             </div>
@@ -73,10 +79,8 @@ export default function () {
                             <div className="sm:col-span-3">
                                 <label htmlFor="country" className="block text-sm font-medium leading-6 text-gray-900">Tipo de venta</label>
                                 <div className="mt-2">
-                                    <select id="type" name="type" className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6" value={valores.type} onChange={inputManage}>
-                                    <option>United States</option>
-                                    <option>Canada</option>
-                                    <option>Mexico</option>
+                                    <select id="type" name="type" className="pl-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6" value={valores.type} onChange={inputManage}>
+                                    { optionsType.map((value) => <option value={ value.toUpperCase() }>{ value }</option>) }
                                     </select>
                                 </div>
                             </div>
@@ -84,7 +88,7 @@ export default function () {
                             <div className="col-span-full">
                                 <label htmlFor="about" className="block text-sm font-medium leading-6 text-gray-900">Componentes</label>
                                 <div className="mt-2">
-                                    <textarea id="components" name="components" className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                    <textarea id="components" name="components" className="pl-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                     value={valores.components} onChange={inputManage}></textarea>
                                 </div>
                                 <p className="mt-3 text-sm leading-6 text-gray-600">Separar con coma ","</p>
@@ -93,7 +97,7 @@ export default function () {
                             <div className="col-span-full">
                                 <label htmlFor="about" className="block text-sm font-medium leading-6 text-gray-900">Descripcion</label>
                                 <div className="mt-2">
-                                    <textarea id="description" name="description" className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                    <textarea id="description" name="description" className="pl-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                     value={valores.description} onChange={inputManage}></textarea>
                                 </div>
                             </div>

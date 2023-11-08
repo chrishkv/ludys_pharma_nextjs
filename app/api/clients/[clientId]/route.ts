@@ -9,7 +9,7 @@ async function connectDatabase() {
 
 // Obtener Cliente por el id
 export async function GET(req: NextRequest, { params }: { params: { clientId: string } }) {
-  try{
+  try {
     const db = await connectDatabase()
     const cliente = await db.collection("clientes").findOne({_id: new ObjectId(params.clientId)})
     
@@ -24,10 +24,10 @@ export async function PUT(req: NextRequest, { params }: { params: { clientId: st
   try {
     const clienteParams = await req.json()
     const db = await connectDatabase()
-    const cliente = await db.collection("clientes").updateOne({_id: new ObjectId(params.clientId)},
-    {
-      $set: clienteParams
-    })
+    const cliente = await db.collection("clientes").updateOne(
+      {_id: new ObjectId(params.clientId)}, 
+      {$set: clienteParams}
+    )
 
     return await NextResponse.json(cliente, { status: 200 })
   } catch (error) {

@@ -1,11 +1,11 @@
 'use client'
 
 import { useRouter } from "next/navigation"
-import { useState } from "react"
+import { ChangeEvent, FormEvent, useState } from "react"
 import { URL_API } from "@/config/envs"
 import { toast } from "react-toastify";
 
-export default function () {
+export default function (clienteId? : string) {
     const [valores, setValues] = useState({
         name: '',
         price: '',
@@ -16,7 +16,13 @@ export default function () {
 
     const router = useRouter();
 
-    const addValues = async (e:any) => {
+    const optionsType = [
+        "Caja",
+        "Paquete",
+        "Individual"
+    ]
+
+    const addValues = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         
         //Envio a la API
@@ -34,10 +40,16 @@ export default function () {
         router.push("/")
     }
 
-    const inputManage = async (e: any) => {
+    const inputManage = async (e: ChangeEvent<any>) => {
         const {name, value} = e.target
         setValues({...valores, [name]: value})
     }
+
+    function loadData() {
+        console.log(clienteId)
+    }
+
+    loadData()
     
     return (
         <div className="flex justify-center items-center">
@@ -73,9 +85,7 @@ export default function () {
                                 <label htmlFor="country" className="block text-sm font-medium leading-6 text-gray-900">Tipo de venta</label>
                                 <div className="mt-2">
                                     <select id="type" name="type" className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6" value={valores.type} onChange={inputManage}>
-                                    <option>United States</option>
-                                    <option>Canada</option>
-                                    <option>Mexico</option>
+                                    { optionsType.map((value) => <option value={ value.toUpperCase() }>{ value }</option>) }
                                     </select>
                                 </div>
                             </div>
